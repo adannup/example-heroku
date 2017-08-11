@@ -1,30 +1,8 @@
 const express = require('express');
-const app = express();
-
-app.get('/user/:id', function (req, res, next) {
-  // if the user ID is 0, skip to the next route
-  if (req.params.id === '0') next('route')
-  // otherwise pass the control to the next middleware function in this stack
-  else next()
-}, function (req, res, next) {
-  // render a regular page
-  res.send('regular')
-})
-
-// handler for the /user/:id path, which sends a special page
-app.get('/user/:id', function (req, res, next) {
-  res.send('special')
-})
-
-app.listen(3000, () => {
-	console.log('Server up on por 3000');
-});
-
-
-
-/*const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
+
+const port = process.env.PORT || 3000;
 
 var app = express();
 
@@ -44,9 +22,9 @@ app.use((req, res, next) => {
 	next();
 })
 
-app.use((req, res, next) => {
+/*app.use((req, res, next) => {
 	res.render('maintenance.hbs');
-}) 
+}) */
 
 app.use(express.static(__dirname + '/public'));
 
@@ -78,6 +56,6 @@ app.get('/bad', (req, res) => {
 	});
 });
 
-app.listen(3000, () => {
-	console.log('Server is UP on port 3000');
-});*/
+app.listen(port, () => {
+	console.log(`Server is UP on port ${port}`);
+});
